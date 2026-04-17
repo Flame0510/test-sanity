@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { fetchPages } from '@/lib/sanity'
 
 interface Page {
   _id: string
@@ -18,6 +17,8 @@ export default function Home() {
     const loadPages = async () => {
       try {
         setLoading(true)
+        // Dynamically import to avoid loading at build time
+        const { fetchPages } = await import('@/lib/sanity')
         const data = await fetchPages()
         setPages(data || [])
       } catch (err) {

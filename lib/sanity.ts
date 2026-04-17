@@ -1,11 +1,19 @@
 import { createClient } from '@sanity/client'
 
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
+const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET
+const token = process.env.SANITY_API_TOKEN
+
+if (!projectId || !dataset) {
+  throw new Error('Sanity Project ID or Dataset is not configured')
+}
+
 export const client = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
+  projectId,
+  dataset,
   apiVersion: '2024-01-01',
   useCdn: false,
-  token: process.env.SANITY_API_TOKEN,
+  token,
 })
 
 export async function fetchPages() {
