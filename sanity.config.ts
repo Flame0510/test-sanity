@@ -1,5 +1,5 @@
 import { defineConfig } from 'sanity'
-import { deskTool } from 'sanity/desk'
+import { structureTool } from 'sanity/structure'
 import { schemaTypes } from './sanity/schemaTypes'
 
 export default defineConfig({
@@ -7,7 +7,7 @@ export default defineConfig({
   title: 'Test Sanity CMS',
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
-  plugins: [deskTool()],
+  plugins: [structureTool()],
   schema: {
     types: schemaTypes,
   },
